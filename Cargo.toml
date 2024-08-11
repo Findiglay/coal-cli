@@ -15,7 +15,7 @@ name = "coal"
 path = "src/main.rs"
 
 [features]
-default = ["admin"]
+default = []
 admin = []
 
 [dependencies]
