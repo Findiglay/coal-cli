@@ -1,9 +1,9 @@
 [package]
-name = "ore-cli"
+name = "coal-cli"
 version = "2.2.1"
 edition = "2021"
 license = "Apache-2.0"
-description = "A command line interface for ORE cryptocurrency mining."
+description = "A command line interface for COAL cryptocurrency mining."
 documentation = "https://ore.supply"
 homepage = "https://ore.supply"
 repository = "https://github.com/regolith-labs/ore-cli"
@@ -11,11 +11,11 @@ readme = "./README.md"
 keywords = ["solana", "crypto", "mining"]
 
 [[bin]]
-name = "ore"
+name = "coal"
 path = "src/main.rs"
 
 [features]
-default = []
+default = ["admin"]
 admin = []
 
 [dependencies]
@@ -30,8 +30,6 @@ core_affinity = "0.8.1"
 drillx = "2.0.0"
 futures = "0.3.30"
 num_cpus = "1.16.0"
-ore-api = "2.1.0"
-ore-utils = "2.1.0"
 rand = "0.8.4"
 reqwest = { version = "0.12", features = ["json"] }
 solana-cli-config = "^1.18"
@@ -50,6 +48,6 @@ url = "2.5"
 
 # [patch.crates-io]
 # drillx = { path = "../drillx/drillx" }
-# ore-api = { path = "../ore/api" }
-# ore-utils = { path = "../ore/utils" }
+coal-api = { path = "../coal/api" }
+coal-utils = { path = "../coal/utils" }
 

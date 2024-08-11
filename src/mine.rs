@@ -5,11 +5,11 @@ use drillx::{
     equix::{self},
     Hash, Solution,
 };
-use ore_api::{
+use salt_api::{
     consts::{BUS_ADDRESSES, BUS_COUNT, EPOCH_DURATION},
     state::{Bus, Config, Proof},
 };
-use ore_utils::AccountDeserialize;
+use salt_utils::AccountDeserialize;
 use rand::Rng;
 use solana_program::pubkey::Pubkey;
 use solana_rpc_client::spinner;
@@ -33,7 +33,7 @@ impl Miner {
         // Check num threads
         self.check_num_cores(args.cores);
 
-        // Start mining loop
+        // Start Extracting loop
         let mut last_hash_at = 0;
         let mut last_balance = 0;
         loop {
@@ -43,11 +43,11 @@ impl Miner {
                 get_updated_proof_with_authority(&self.rpc_client, signer.pubkey(), last_hash_at)
                     .await;
             println!(
-                "\n\nStake: {} ORE\n{}  Multiplier: {:12}x",
+                "\n\nStake: {} COAL\n{}  Multiplier: {:12}x",
                 amount_u64_to_string(proof.balance),
                 if last_hash_at.gt(&0) {
                     format!(
-                        "  Change: {} ORE\n",
+                        "  Change: {} COAL\n",
                         amount_u64_to_string(proof.balance.saturating_sub(last_balance))
                     )
                 } else {
@@ -67,15 +67,15 @@ impl Miner {
                     .await;
 
             // Build instruction set
-            let mut ixs = vec![ore_api::instruction::auth(proof_pubkey(signer.pubkey()))];
+            let mut ixs = vec![salt_api::instruction::auth(proof_pubkey(signer.pubkey()))];
             let mut compute_budget = 500_000;
-            if self.should_reset(config).await && rand::thread_rng().gen_range(0..100).eq(&0) {
+            if self.should_reset(config).await {
                 compute_budget += 100_000;
-                ixs.push(ore_api::instruction::reset(signer.pubkey()));
+                ixs.push(salt_api::instruction::reset(signer.pubkey()));
             }
 
             // Build mine ix
-            ixs.push(ore_api::instruction::mine(
+            ixs.push(salt_api::instruction::mine(
                 signer.pubkey(),
                 signer.pubkey(),
                 self.find_bus().await,
@@ -98,7 +98,7 @@ impl Miner {
         // Dispatch job to each thread
         let progress_bar = Arc::new(spinner::new_progress_bar());
         let global_best_difficulty = Arc::new(RwLock::new(0u32));
-        progress_bar.set_message("Mining...");
+        progress_bar.set_message("Extracting...");
         let core_ids = core_affinity::get_core_ids().unwrap();
         let handles: Vec<_> = core_ids
             .into_iter()
@@ -151,7 +151,7 @@ impl Miner {
                                 if timer.elapsed().as_secs().ge(&cutoff_time) {
                                     if i.id == 0 {
                                         progress_bar.set_message(format!(
-                                            "Mining... (difficulty {})",
+                                            "Extracting... (difficulty {})",
                                             global_best_difficulty,
                                         ));
                                     }
@@ -161,7 +161,7 @@ impl Miner {
                                     }
                                 } else if i.id == 0 {
                                     progress_bar.set_message(format!(
-                                        "Mining... (difficulty {}, time {})",
+                                        "Extracting... (difficulty {}, time {})",
                                         global_best_difficulty,
                                         format_duration(
                                             cutoff_time.saturating_sub(timer.elapsed().as_secs())

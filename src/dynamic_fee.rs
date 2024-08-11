@@ -1,6 +1,6 @@
 use crate::Miner;
 
-use ore_api::consts::BUS_ADDRESSES;
+use salt_api::consts::BUS_ADDRESSES;
 use reqwest::Client;
 use serde_json::{json, Value};
 use solana_client::rpc_response::RpcPrioritizationFee;
@@ -41,7 +41,7 @@ impl Miner {
 
         // Build fee estimate request
         let client = Client::new();
-        let ore_addresses: Vec<String> = std::iter::once(ore_api::ID.to_string())
+        let ore_addresses: Vec<String> = std::iter::once(salt_api::ID.to_string())
             .chain(BUS_ADDRESSES.iter().map(|pubkey| pubkey.to_string()))
             .collect();
         let body = match strategy {
