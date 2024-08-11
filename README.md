@@ -7,7 +7,7 @@ A command line interface for COAL cryptocurrency mining.
 To install the CLI, use [cargo](https://doc.rust-lang.org/cargo/getting-started/installation.html):
 
 ```sh
-cargo install ore-cli
+cargo install --git https://github.com/Findiglay/coal-cli.git coal-cli
 ```
 
 ### Dependencies
