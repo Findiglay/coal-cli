@@ -1,8 +1,8 @@
-use salt_api::{
+use coal_api::{
     consts::{BUS_ADDRESSES, TOKEN_DECIMALS},
     state::Bus,
 };
-use salt_utils::AccountDeserialize;
+use coal_utils::AccountDeserialize;
 
 use crate::Miner;
 

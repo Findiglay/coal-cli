@@ -14,7 +14,7 @@ impl Miner {
 
         // Sign and send transaction.
         println!("Generating challenge...");
-        let ix = salt_api::instruction::open(signer.pubkey(), signer.pubkey(), fee_payer.pubkey());
+        let ix = coal_api::instruction::open(signer.pubkey(), signer.pubkey(), fee_payer.pubkey());
         self.send_and_confirm(&[ix], ComputeBudget::Dynamic, false)
             .await
             .ok();

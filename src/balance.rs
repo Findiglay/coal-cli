@@ -25,7 +25,7 @@ impl Miner {
         let proof = get_proof_with_authority(&self.rpc_client, address).await;
         let token_account_address = spl_associated_token_account::get_associated_token_address(
             &address,
-            &salt_api::consts::MINT_ADDRESS,
+            &coal_api::consts::MINT_ADDRESS,
         );
         let token_balance = if let Ok(Some(token_account)) = self
             .rpc_client

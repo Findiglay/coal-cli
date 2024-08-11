@@ -1,13 +1,13 @@
 use std::{io::Read, time::Duration};
 
 use cached::proc_macro::cached;
-use salt_api::{
+use coal_api::{
     consts::{
         CONFIG_ADDRESS, MINT_ADDRESS, PROOF, TOKEN_DECIMALS, TOKEN_DECIMALS_V1, TREASURY_ADDRESS,
     },
     state::{Config, Proof, Treasury},
 };
-use salt_utils::AccountDeserialize;
+use coal_utils::AccountDeserialize;
 use solana_client::nonblocking::rpc_client::RpcClient;
 use solana_program::{pubkey::Pubkey, sysvar};
 use solana_sdk::clock::Clock;
@@ -95,7 +95,7 @@ pub fn ask_confirm(question: &str) -> bool {
 
 #[cached]
 pub fn proof_pubkey(authority: Pubkey) -> Pubkey {
-    Pubkey::find_program_address(&[PROOF, authority.as_ref()], &salt_api::ID).0
+    Pubkey::find_program_address(&[PROOF, authority.as_ref()], &coal_api::ID).0
 }
 
 #[cached]

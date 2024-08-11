@@ -18,7 +18,7 @@ impl Miner {
             }
             None => spl_associated_token_account::get_associated_token_address(
                 &signer.pubkey(),
-                &salt_api::consts::MINT_ADDRESS,
+                &coal_api::consts::MINT_ADDRESS,
             ),
         };
 
@@ -37,7 +37,7 @@ impl Miner {
         };
 
         // Send tx
-        let ix = salt_api::instruction::stake(signer.pubkey(), sender, amount);
+        let ix = coal_api::instruction::stake(signer.pubkey(), sender, amount);
         self.send_and_confirm(&[ix], ComputeBudget::Fixed(CU_LIMIT_CLAIM), false)
             .await
             .ok();

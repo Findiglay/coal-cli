@@ -19,7 +19,7 @@ impl Miner {
         if !ask_confirm(
             format!("{} You have {} COAL staked in this account.\nAre you sure you want to {}close this account? [Y/n]", 
                 "WARNING".yellow(),
-                amount_to_ui_amount(proof.balance, salt_api::consts::TOKEN_DECIMALS),
+                amount_to_ui_amount(proof.balance, coal_api::consts::TOKEN_DECIMALS),
                 if proof.balance.gt(&0) { "claim your stake and "} else { "" }
             ).as_str()
         ) {
@@ -36,7 +36,7 @@ impl Miner {
         }
 
         // Submit close transaction
-        let ix = salt_api::instruction::close(signer.pubkey());
+        let ix = coal_api::instruction::close(signer.pubkey());
         self.send_and_confirm(&[ix], ComputeBudget::Dynamic, false)
             .await
             .ok();

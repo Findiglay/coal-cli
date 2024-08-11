@@ -1,7 +1,7 @@
 use std::str::FromStr;
 
 use colored::*;
-use salt_api::consts::MINT_ADDRESS;
+use coal_api::consts::MINT_ADDRESS;
 use solana_program::pubkey::Pubkey;
 use solana_sdk::signature::Signer;
 use spl_token::amount_to_ui_amount;
@@ -36,7 +36,7 @@ impl Miner {
                 spl_associated_token_account::instruction::create_associated_token_account(
                     &signer.pubkey(),
                     &to,
-                    &salt_api::consts::MINT_ADDRESS,
+                    &coal_api::consts::MINT_ADDRESS,
                     &spl_token::id(),
                 ),
             );
@@ -51,7 +51,7 @@ impl Miner {
                 "\nYou are about to transfer {}.\n\nAre you sure you want to continue? [Y/n]",
                 format!(
                     "{} COAL",
-                    amount_to_ui_amount(amount, salt_api::consts::TOKEN_DECIMALS)
+                    amount_to_ui_amount(amount, coal_api::consts::TOKEN_DECIMALS)
                 )
                 .bold(),
             )

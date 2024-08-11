@@ -1,6 +1,6 @@
 use std::str::FromStr;
 
-use salt_api::consts::TOKEN_DECIMALS;
+use coal_api::consts::TOKEN_DECIMALS;
 use solana_program::pubkey::Pubkey;
 use solana_sdk::signature::Signer;
 use spl_token::amount_to_ui_amount;

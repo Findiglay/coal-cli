@@ -5,11 +5,11 @@ use drillx::{
     equix::{self},
     Hash, Solution,
 };
-use salt_api::{
+use coal_api::{
     consts::{BUS_ADDRESSES, BUS_COUNT, EPOCH_DURATION},
     state::{Bus, Config, Proof},
 };
-use salt_utils::AccountDeserialize;
+use coal_utils::AccountDeserialize;
 use rand::Rng;
 use solana_program::pubkey::Pubkey;
 use solana_rpc_client::spinner;
@@ -67,15 +67,15 @@ impl Miner {
                     .await;
 
             // Build instruction set
-            let mut ixs = vec![salt_api::instruction::auth(proof_pubkey(signer.pubkey()))];
+            let mut ixs = vec![coal_api::instruction::auth(proof_pubkey(signer.pubkey()))];
             let mut compute_budget = 500_000;
             if self.should_reset(config).await {
                 compute_budget += 100_000;
-                ixs.push(salt_api::instruction::reset(signer.pubkey()));
+                ixs.push(coal_api::instruction::reset(signer.pubkey()));
             }
 
             // Build mine ix
-            ixs.push(salt_api::instruction::mine(
+            ixs.push(coal_api::instruction::mine(
                 signer.pubkey(),
                 signer.pubkey(),
                 self.find_bus().await,

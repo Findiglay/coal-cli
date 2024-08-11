@@ -944,6 +944,68 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "1462739cb27611015575c0c11df5df7601141071f07518d56fcc1be504cbec97"
 
 [[package]]
+name = "coal-api"
+version = "2.1.0"
+source = "git+https://github.com/Findiglay/coal.git#bbdcb907121a693bc9f4c302d7857658fc0d06ce"
+dependencies = [
+ "array-const-fn-init",
+ "bytemuck",
+ "coal-utils",
+ "const-crypto",
+ "drillx",
+ "mpl-token-metadata",
+ "num_enum 0.7.3",
+ "solana-program",
+ "spl-associated-token-account",
+ "spl-token",
+ "static_assertions",
+ "thiserror",
+]
+
+[[package]]
+name = "coal-cli"
+version = "2.2.1"
+dependencies = [
+ "bincode",
+ "bs58 0.5.1",
+ "bytemuck",
+ "cached",
+ "chrono",
+ "clap 4.5.15",
+ "coal-api",
+ "coal-utils",
+ "colored",
+ "core_affinity",
+ "drillx",
+ "futures",
+ "num_cpus",
+ "rand 0.8.5",
+ "reqwest 0.12.4",
+ "serde_json",
+ "solana-cli-config",
+ "solana-client",
+ "solana-program",
+ "solana-rpc-client",
+ "solana-sdk",
+ "solana-transaction-status",
+ "spl-associated-token-account",
+ "spl-token",
+ "tokio",
+ "url",
+]
+
+[[package]]
+name = "coal-utils"
+version = "2.1.0"
+source = "git+https://github.com/Findiglay/coal.git#bbdcb907121a693bc9f4c302d7857658fc0d06ce"
+dependencies = [
+ "bytemuck",
+ "solana-program",
+ "spl-associated-token-account",
+ "spl-token",
+]
+
+[[package]]
 name = "colorchoice"
 version = "1.0.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3463,66 +3525,6 @@ name = "ryu"
 version = "1.0.18"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f3cb5ba0dc43242ce17de99c180e96db90b235b8a9fdc9543c96d2209116bd9f"
-
-[[package]]
-name = "coal-api"
-version = "2.1.0"
-dependencies = [
- "array-const-fn-init",
- "bytemuck",
- "const-crypto",
- "drillx",
- "mpl-token-metadata",
- "num_enum 0.7.3",
- "coal-utils",
- "solana-program",
- "spl-associated-token-account",
- "spl-token",
- "static_assertions",
- "thiserror",
-]
-
-[[package]]
-name = "coal-cli"
-version = "2.2.1"
-dependencies = [
- "bincode",
- "bs58 0.5.1",
- "bytemuck",
- "cached",
- "chrono",
- "clap 4.5.15",
- "colored",
- "core_affinity",
- "drillx",
- "futures",
- "num_cpus",
- "rand 0.8.5",
- "reqwest 0.12.4",
- "coal-api",
- "coal-utils",
- "serde_json",
- "solana-cli-config",
- "solana-client",
- "solana-program",
- "solana-rpc-client",
- "solana-sdk",
- "solana-transaction-status",
- "spl-associated-token-account",
- "spl-token",
- "tokio",
- "url",
-]
-
-[[package]]
-name = "coal-utils"
-version = "2.1.0"
-dependencies = [
- "bytemuck",
- "solana-program",
- "spl-associated-token-account",
- "spl-token",
-]
 
 [[package]]
 name = "schannel"
