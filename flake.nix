@@ -32,7 +32,7 @@
         nativeBuildInputs = with pkgs; [openssl pkg-config];
         src = craneLib.cleanCargoSource ./.;
 
-        ore-cli = craneLib.buildPackage {
+        coal-cli = craneLib.buildPackage {
           inherit src nativeBuildInputs;
           doCheck = false;
           buildInputs = runtimeInputs;
@@ -42,22 +42,22 @@
 
       in {
         checks = {
-          inherit ore-cli;
+          inherit coal-cli;
 
           # Clippy
-          ore-cli-clippy = craneLib.cargoClippy {
+          coal-cli-clippy = craneLib.cargoClippy {
             inherit cargoArtifacts src;
             cargoClippyExtraArgs = "--all-targets -- --deny warnings";
           };
 
           # Check formatting
-          ore-cli-fmt = craneLib.cargoFmt {inherit src;};
+          coal-cli-fmt = craneLib.cargoFmt {inherit src;};
 
           # Audit dependencies
-          ore-cli-audit = craneLib.cargoAudit {inherit src advisory-db;};
+          coal-cli-audit = craneLib.cargoAudit {inherit src advisory-db;};
 
           # Run tests with cargo-nextest
-          ore-cli-nextest = craneLib.cargoNextest {
+          coal-cli-nextest = craneLib.cargoNextest {
             inherit cargoArtifacts src;
             buildInputs = runtimeInputs; # needed for tests
             partitions = 1;
@@ -66,7 +66,7 @@
         };
 
         packages = {
-          default = ore-cli;
+          default = coal-cli;
         };
 
         devShells.default = pkgs.mkShell {
