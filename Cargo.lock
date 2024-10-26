@@ -946,9 +946,9 @@ checksum = "4b82cf0babdbd58558212896d1a4272303a57bdb245c2bf1147185fb45640e70"
 
 [[package]]
 name = "coal-api"
-version = "2.5.2"
+version = "2.5.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "24f69920170004d4240fac5135bc3f24107035517b9155e613af674767e07457"
+checksum = "997aed600aa1ab7bc645fabb294706f401d9b2c663b2163faa603c36027b7ffc"
 dependencies = [
  "array-const-fn-init",
  "bytemuck",
@@ -967,7 +967,7 @@ dependencies = [
 
 [[package]]
 name = "coal-cli"
-version = "2.7.2"
+version = "2.7.3"
 dependencies = [
  "bincode",
  "bs58 0.5.1",
@@ -1686,9 +1686,9 @@ checksum = "00b0228411908ca8685dba7fc2cdd70ec9990a6e753e89b6ac91a84c40fbaf4b"
 
 [[package]]
 name = "forge-api"
-version = "1.0.2"
+version = "1.0.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8c0910fa969c52900484a3e9a36d8c7aadbd6630cb52be254ff5d4c15b8086a9"
+checksum = "56555b770fa77f9a16c2b16fccbb9ab8cb09de728bbeb5d9b8e9f8e86b056896"
 dependencies = [
  "array-const-fn-init",
  "borsh 1.5.1",

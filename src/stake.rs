@@ -2,6 +2,9 @@ use std::str::FromStr;
 
 use solana_program::pubkey::Pubkey;
 use solana_sdk::signature::Signer;
+use coal_api;
+use smelter_api;
+use ore_api;
 
 use crate::{
     args::StakeArgs, cu_limits::CU_LIMIT_CLAIM, send_and_confirm::ComputeBudget,
